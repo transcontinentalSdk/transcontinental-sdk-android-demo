@@ -48,5 +48,5 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    implementation("com.github.transcontinentalSdk:sdk-android-internal:1.9.9")
+    implementation("com.github.transcontinentalSdk:sdk-android-internal:main-SNAPSHOT")
 }
