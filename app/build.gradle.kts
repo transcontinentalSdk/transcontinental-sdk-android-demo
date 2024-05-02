@@ -44,5 +44,5 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
 
-    implementation("com.github.transcontinentalSdk:sdk-android-internal:2.0.0")
+    implementation("com.github.transcontinentalSdk:sdk-android-internal:2.0.1")
 }
