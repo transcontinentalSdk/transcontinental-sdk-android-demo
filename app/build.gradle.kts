@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.tctranscontinental.android.digitalflyer.demo"
-        minSdk = 33
+        minSdk = 28
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -17,6 +17,7 @@ android {
 
     buildFeatures {
         buildConfig = true
+        compose = true
     }
 
     buildTypes {
@@ -35,6 +36,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8"
+    }
 }
 
 dependencies {
@@ -44,5 +48,9 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
 
-    implementation("com.github.transcontinentalSdk:sdk-android-internal:2.0.1")
+    implementation("com.github.transcontinentalSdk:sdk-android-internal:main-SNAPSHOT")
+
+    implementation("androidx.compose.ui:ui:1.4.0")
+    implementation("androidx.activity:activity-compose:1.7.0")
+    implementation("androidx.compose.material:material:1.4.0")
 }

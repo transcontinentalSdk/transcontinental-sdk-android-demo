@@ -1,15 +1,16 @@
 package com.tctranscontinental.android.digitalflyer.demo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.lifecycle.lifecycleScope
 import com.tctranscontinental.android.digitalflyer.DigitalFlyer
-import com.tctranscontinental.android.digitalflyer.Orientation
 import com.tctranscontinental.android.digitalflyer.ui.Event
-import com.tctranscontinental.android.digitalflyer.ui.xml.FlyerView
+import com.tctranscontinental.android.digitalflyer.ui.FlyerViewUI
+import com.tctranscontinental.android.digitalflyer.ui.theme.DigitalFlyerTheme
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
     private val subscriptionKey = ""
     private val client = ""
     private val banner = ""
@@ -20,23 +21,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val digitalFlyer = DigitalFlyer(
-            subscriptionKey,
-            client,
-            banner
+            subscriptionKey = subscriptionKey,
+            client = client,
+            banner = banner,
         )
 
         lifecycleScope.launch {
-            val publications = digitalFlyer.listPublications(storeId)
-            val publication = digitalFlyer.getPublication(
-                publications.first(),
-                orientation = Orientation.VERTICAL
-            )
+            val publications = digitalFlyer.listPublications(storeId = storeId)
 
-            val flyerView = findViewById<FlyerView>(R.id.flyer_view)
-            flyerView.setActivePublication(publication) { event ->
-                when (event) {
-                    is Event.Sku -> println("SKU: ${event.sku}") // This will be called when an event is emitted
-                    else -> TODO("Handle other events")
+            setContent {
+                DigitalFlyerTheme {
+                    FlyerViewUI(
+                        digitalFlyer = digitalFlyer,
+                        attributes = publications.first(),
+                    ) { event ->
+                        when (event) {
+                            is Event.Sku -> println(event.sku)
+                            is Event.Url -> println(event.url)
+                            else -> {}
+                        }
+                    }
                 }
             }
         }
