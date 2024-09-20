@@ -6,8 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.lifecycle.lifecycleScope
 import com.tctranscontinental.android.digitalflyer.DigitalFlyer
 import com.tctranscontinental.android.digitalflyer.ui.Event
+import com.tctranscontinental.android.digitalflyer.ui.FlyerStyle
 import com.tctranscontinental.android.digitalflyer.ui.FlyerViewUI
-import com.tctranscontinental.android.digitalflyer.ui.theme.DigitalFlyerTheme
+import com.tctranscontinental.android.digitalflyer.ui.MastheadStyle
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -15,6 +16,7 @@ class MainActivity : ComponentActivity() {
     private val client = ""
     private val banner = ""
     private val storeId = ""
+    private val myCustomStyle = FlyerStyle(masthead = MastheadStyle())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,16 +32,15 @@ class MainActivity : ComponentActivity() {
             val publications = digitalFlyer.listPublications(storeId = storeId)
 
             setContent {
-                DigitalFlyerTheme {
-                    FlyerViewUI(
-                        digitalFlyer = digitalFlyer,
-                        attributes = publications.first(),
-                    ) { event ->
-                        when (event) {
-                            is Event.Sku -> println(event.sku)
-                            is Event.Url -> println(event.url)
-                            else -> {}
-                        }
+                FlyerViewUI(
+                    digitalFlyer = digitalFlyer,
+                    attributes = publications.first(),
+                    flyerStyle = myCustomStyle,
+                ) { event ->
+                    when (event) {
+                        is Event.Sku -> println(event.sku)
+                        is Event.Url -> println(event.url)
+                        else -> {}
                     }
                 }
             }
