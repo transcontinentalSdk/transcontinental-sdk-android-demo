@@ -53,5 +53,5 @@ dependencies {
     implementation("androidx.compose.ui:ui:1.4.0")
     implementation("androidx.compose.material:material:1.4.0")
 
-    implementation("com.github.transcontinentalSdk:sdk-android-internal:2.1.0")
+    implementation("com.github.transcontinentalSdk:sdk-android-internal:2.1.1")
 }
