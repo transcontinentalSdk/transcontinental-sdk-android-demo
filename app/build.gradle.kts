@@ -37,7 +37,7 @@ android {
         jvmTarget = "1.8"
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
 }
 
@@ -53,5 +53,5 @@ dependencies {
     implementation("androidx.compose.ui:ui:1.4.0")
     implementation("androidx.compose.material:material:1.4.0")
 
-    implementation("com.github.transcontinentalSdk:sdk-android-internal:2.2.0")
+    implementation("com.github.transcontinentalSdk:sdk-android-internal:2.2.1")
 }
